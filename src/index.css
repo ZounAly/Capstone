@@ -14,10 +14,10 @@
 
 @layer utilities{
     .title{
-        @apply font-markazi text-[clamp(32px,23.5789px+2.6316vw,64px)] [line-height:auto] font-medium;
+        @apply font-markazi text-[clamp(32px,23.5789px+2.6316vw,64px)] leading-[clamp(32px,23.5789px+2.6316vw,64px)] font-medium;
     }
     .subtite{
-        @apply font-markazi text-[clamp(24px,19.7895px+1.3158vw,40px)] [line-height:auto] font-normal;
+        @apply font-markazi text-[clamp(24px,19.7895px+1.3158vw,40px)] leading-[clamp(24px,19.7895px+1.3158vw,40px)] font-normal;
     }
     .leadText{
         @apply font-karla text-[clamp(14px,10px+0.52vw,18px)] [line-height:auto] font-medium;
@@ -38,6 +38,26 @@
         @apply font-karla text-[clamp(12px,10.95px+0.33vw,16px)] [line-height:auto] font-medium;
     }
     .button{
-        @apply bg-primary2 px-[clamp(20px,12.6316px+2.3026vw,40px)] p-[clamp(7px,4.7368px+0.6579vw,15px)] inline-block rounded-[18px] hover:translate-x-1 hover:-translate-y-1 transition-all ease-in-out duration-400;
+        @apply bg-primary2 px-[clamp(20px,12.6316px+2.3026vw,40px)] p-[clamp(7px,4.7368px+0.6579vw,15px)] inline-block rounded-[18px] hover:translate-x-1 hover:-translate-y-1 transition-all ease-in-out duration-400 hover:shadow-2xs hover:shadow-primary2;
     }
+}
+
+@layer components{
+    /* dish-card */
+    .dish-card{
+        @apply rounded-t-[10px] overflow-hidden hover:shadow-2xl shadow-primary transition-all ease-in-out duration-400;
+    }
+    .dish-card > img{
+        @apply w-full h-[clamp(200px,154.7368px+14.1447vw,330px)] object-cover;
+    }
+    .dish-card .card-content{
+        @apply p-[clamp(15px,8.6842px+1.7763vw,30px)] bg-[#DEDEDE];
+    }
+    .dish-card .card-content h4{
+        @apply text-secondary4 flex justify-between items-center pb-[clamp(15px,7.1053px+2.4342vw,35px)];
+    }
+    .dish-card .card-content a{
+        @apply text-black flex items-center hover:text-primary mt-[clamp(15px,7.1053px+2.4342vw,35px)];
+    }
+    /* dish-card */
 }
