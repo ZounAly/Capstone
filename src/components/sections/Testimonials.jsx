@@ -13,7 +13,7 @@ export const TestiItem = () => (
     </div>
     <div className='t-header flex items-center my-5'>
       <img src={Testi} className='w-20 h-20 object-cover mr-5'/>
-      <h4 className='secTitle text-black'>John Doe</h4>
+      <h4 className='secTitle text-black uppercase'>John Doe</h4>
     </div>  
     <p className='para text-black'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod vero recusandae, doloremque ducimus facilis quas facere nobis veniam iusto consequuntur modi exercitationem amet sequi, voluptates mollitia, voluptate quos excepturi quibusdam.</p>
   </div>
