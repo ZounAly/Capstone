@@ -2,12 +2,12 @@ import React from 'react'
 
 export const Nav = (props) => {
   const navItems = [
-    { text: 'Home', href: '#:' },
-    { text: 'About', href: '#:' },
-    { text: 'Menu', href: '#:' },
-    { text: 'Reservations', href: '#:' },
-    { text: 'Order online', href: '#:' },
-    { text: 'Login', href: '#:' },
+    { text: 'Home', href: '/' },
+    { text: 'About', href: '/about' },
+    { text: 'Menu', href: '/menu' },
+    { text: 'Reservations', href: '/reservations' },
+    { text: 'Order online', href: '/order-online' },
+    { text: 'Login', href: '/login' },
   ];
   return (
     <nav className={props.className}>

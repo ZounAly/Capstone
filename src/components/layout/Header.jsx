@@ -9,7 +9,7 @@ export const Header = () => {
     <header>
       <div className='container mx-auto py-[1rem]'>
         <div className='grid grid-cols-12 items-center'>
-          <a href="#" className='col-span-6 md:col-span-4'>
+          <a href="/" className='col-span-6 md:col-span-4'>
             <img src={Logo} className='logo h-[clamp(40px,32.1053px+2.4671vw,70px)]' alt='Logo'/>
           </a>
           

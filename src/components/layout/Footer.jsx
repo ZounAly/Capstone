@@ -13,7 +13,7 @@ export const Footer = () => {
           <div className='col mt-5'>
             <h4 className='widget secTitle mb-2.5'>Doormat Navigation</h4>
             <ul className='leadText'>
-              <li><a href="#" className='hover:text-primary'>Home</a></li>
+              <li><a href="/" className='hover:text-primary'>Home</a></li>
               <li><a href="#" className='hover:text-primary'>About</a></li>
               <li><a href="#" className='hover:text-primary'>Menu</a></li>
               <li><a href="#" className='hover:text-primary'>Reservation</a></li>

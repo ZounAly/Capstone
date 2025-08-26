@@ -22,11 +22,11 @@ export const Card = (props) => (
     </div>
 );
 
-const WeeksSpecials = () => {
+const WeeksSpecials = ({cta}) => {
   return (
     <section className='weeks-special pt-4 pb-8'>
         <div className='container mx-auto'>
-            <Cta/>
+            {cta && <Cta/>}
             <div className='grid md:grid-cols-3 gap-5'>
                 <Card 
                     imageURL={Dish1}

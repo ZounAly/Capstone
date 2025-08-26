@@ -1,22 +1,26 @@
 import './App.css'
-import { Footer } from './components/layout/Footer'
-import { Header } from './components/layout/Header'
-import Banner from './components//sections/Banner'
-import WeeksSpecials from './components//sections/WeeksSpecials'
-import Testimonials from './components//sections/Testimonials'
-import About from './components//sections/About'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Menu from './pages/Menu';
+import Reservations from './pages/Reservations';
+import OrderOnline from './pages/OrderOnline';
+import Login from './pages/Login';
+
 
 function App() {
 
   return (
-    <>
-        <Header/>
-        <Banner/>
-        <WeeksSpecials/>
-        <Testimonials/>
-        <About/>
-        <Footer/>
-    </>
+     <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/reservations" element={<Reservations />} />
+          <Route path="/order-online" element={<OrderOnline />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+    </BrowserRouter>
   )
 }
 
