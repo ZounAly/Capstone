@@ -1,17 +1,17 @@
 import React, { useCallback, useState } from 'react'
 
-const BookingForm = () => {
+const BookingForm = (props) => {
     const [formData, setFormData] = useState(
         {date:'',time:'',guests:'', occasion:''}
     );
 
-     const [availableTimes] = useState([
-        "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"
-    ]);
-
-
     const handleChange = useCallback((e) => {
         const {name, value, type, checked} = e.target;
+
+        if (name === 'date') {
+           props.dispatchTimes({ type: 'UPDATE_DATE', date: value });
+        }
+
         setFormData(prev => ({
             ...prev,
             [name]: type === "checkbox"
@@ -33,7 +33,16 @@ const BookingForm = () => {
         });
     },[formData]);
 
-     
+    const getTodayDate = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const dd = String(today.getDate()).padStart(2, '0');
+
+        return `${yyyy}-${mm}-${dd}`;
+    };
+    
+    const today = getTodayDate();
     return (
         <section className='reservation-sec py-[clamp(50px,31.3158px+5.8553vw,100px)]' id="reservation-sec">
             <div className='container mx-auto'>
@@ -43,9 +52,11 @@ const BookingForm = () => {
                         Choose date
                         </label>
                         <input
+                        role='date'
                         id="date"
                         name="date"
                         type="date"
+                        min={today}
                         value={formData.date}
                         onChange={handleChange}
                         className="w-full p-3 border rounded border-white text-white focus:shadow-sm shadow-primary2 focus:border-primary2 outline-0 leadText"
@@ -55,6 +66,7 @@ const BookingForm = () => {
                     <div className='grid grid-cols-[20%_80%] items-center mb-3'>
                         <label htmlFor="time" className="block mb-1 text-white leadText">Select Time:</label>
                         <select
+                            role='time'
                             id="time"
                             name="time"
                             value={formData.time}
@@ -62,7 +74,7 @@ const BookingForm = () => {
                             className="w-full p-3 border rounded border-white text-white focus:shadow-sm shadow-primary2 focus:border-primary2 outline-0 leadText"
                             required
                         >
-                            {availableTimes.map(time => (
+                            {props.availableTimes.map(time => (
                             <option className='text-black' key={time} value={time}>
                                 {time}
                             </option>
@@ -74,6 +86,7 @@ const BookingForm = () => {
                         Number of guests
                         </label>
                         <input
+                        role='guests'
                         id="guests"
                         name="guests"
                         type="number"
@@ -90,7 +103,8 @@ const BookingForm = () => {
                         <label htmlFor="occasion" className="block mb-1 text-white leadText">
                         Occasion:
                         </label>
-                        <select 
+                        <select
+                        role='occasion'
                         id="occasion"
                         className="w-full p-3 border rounded border-white text-white focus:shadow-sm shadow-primary2 focus:border-primary2 outline-0 leadText"
                         name="occasion"
