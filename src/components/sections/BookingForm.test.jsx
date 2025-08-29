@@ -3,7 +3,8 @@ import { render, fireEvent, screen, renderHook } from "@testing-library/react";
 import BookingForm from "./BookingForm";
 import { initializeTime, updateTime } from "../../hooks/useReservationTime";
 import useReservationTime from '../../hooks/useReservationTime'
-import { expect } from "vitest";
+import { expect, vi } from "vitest";
+import * as api from "../../api";
 
 describe("Booking Form Unit Testing",()=>{
     let availableTimes;
@@ -34,18 +35,24 @@ describe("Booking Form Unit Testing",()=>{
     });
 
     test("initializeTimes() returns the expected values",()=>{
-        const DEFAULT_TIMES = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+        const mockTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+        vi.spyOn(api, "fetchAPI").mockReturnValue(mockTimes);
         const times = initializeTime();
+
+        expect(api.fetchAPI).toHaveBeenCalled(); //check if the function is called
         expect(Array.isArray(times)).toBe(true); //checks if times is array
         expect(times.length).toBeGreaterThan(0); //checks if its not empty
         expect(times.every(t => /^\d{2}:\d{2}$/.test(t))).toBe(true); //check format 00:00
-        expect(times).toEqual(DEFAULT_TIMES); // confirms the function returns the expected value
+        expect(times).toEqual(mockTimes); // confirms the function returns the expected value
     });
 
     test("test for the updateTimes() function to validate that it returns the same value that is provided in the state.", ()=> {
-        const DEFAULT_TIMES = initializeTime();
-        expect(updateTime([], { type: "UPDATE_DATE", date: "2025-08-27" })).toEqual(DEFAULT_TIMES);
-        expect(updateTime([], { type: "RANDOM_ACTION" })).toEqual(DEFAULT_TIMES);
-        expect(updateTime([], { type: "" })).toEqual(DEFAULT_TIMES);
+        const mockTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+        vi.spyOn(api, "fetchAPI").mockReturnValue(mockTimes);
+        const action = { type: "UPDATE_DATE", date: "2025-08-28" };
+        const prevState = ["17:00", "18:00"];
+        const result = updateTime(prevState, action);
+        expect(api.fetchAPI).toHaveBeenCalledWith(new Date("2025-08-28"));
+        expect(result).toEqual(mockTimes);
     });
 });

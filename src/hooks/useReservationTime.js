@@ -1,12 +1,17 @@
 import { useReducer, useState } from "react";
+import { fetchAPI } from '../api';
 
 export const initializeTime = () => {
-    return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+    const todaysTime = fetchAPI(new Date());
+    return todaysTime;
 }
 
 export const updateTime = (state, action) => {
-    const {date} = action;
-    return initializeTime();
+    if (action.type === "UPDATE_DATE") {
+        const newDate = new Date(action.date);
+        return fetchAPI(newDate);      // fetch times for the chosen date
+    }
+    return state; 
 }
 
 const useReservationTime = () => {

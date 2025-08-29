@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react'
+import { submitAPI } from '../../api';
 
 const BookingForm = (props) => {
     const [formData, setFormData] = useState(
-        {date:'',time:'',guests:'', occasion:''}
+        {date:'',time:'',guests:'', occasion:'Birthday'}
     );
 
     const handleChange = useCallback((e) => {
@@ -22,14 +23,20 @@ const BookingForm = (props) => {
         }));
     }, []);
     
+    const [submitted, setSubmitted] = useState(false); 
+
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
+        setSubmitted(submitAPI(formData));
+        setTimeout(() => {
+            setSubmitted(false);
+        }, 3000);
         setFormData({
             date: '',
             time: '17:00', // Keep your default time
             guests: '',
-            occasion: ''
+            occasion: 'Birthday'
         });
     },[formData]);
 
@@ -123,6 +130,7 @@ const BookingForm = (props) => {
                             >
                             Make Your Reservation
                         </button>
+                        {submitted && <p className='leadText p-2.5 bg-green-700 text-white mt-5'>We are pleased to inform you that your booking is confirmed.</p>}
                     </div>
                 </form>
             </div>
