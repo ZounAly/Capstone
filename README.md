@@ -2,4 +2,4 @@
 
 A web app for the Little Lemon Restaurant in Chicago.
 
-##React + Tailwind + Vitest + RTL
+#React + Tailwind + Vitest + RTL
